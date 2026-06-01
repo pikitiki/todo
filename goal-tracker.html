@@ -16,24 +16,25 @@
   --danger:#8b2e2e;--danger-light:#fdf0f0;
   --warn:#7a5c1e;--warn-light:#fdf6e8;
   --blue:#3a4a7a;--blue-light:#eef0f7;--blue-border:#c8cfe8;
+  --p1-bg:#fdf0f0;--p1-color:#8b2e2e;--p1-border:#e5b8b8;
+  --p2-bg:#fdf6e8;--p2-color:#7a5c1e;--p2-border:#e5d5a0;
+  --p3-bg:#eef3ee;--p3-color:#3d5a3e;--p3-border:#b8d4b8;
+  --p4-bg:#f5f2ee;--p4-color:#a09890;--p4-border:#ccc5ba;
   --r:10px;--rs:6px;
 }
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:2rem 1rem 4rem}
 h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;letter-spacing:-0.02em;margin-bottom:.25rem}
-.subtitle{font-size:.875rem;color:var(--text3);margin-bottom:2rem}
+.subtitle{font-size:.875rem;color:var(--text3);margin-bottom:1.5rem}
 .container{max-width:700px;margin:0 auto}
 
-/* Header buttons */
 .header-btns{float:right;display:flex;gap:.4rem;margin-top:.4rem;flex-wrap:wrap}
 .hbtn{padding:.4rem .85rem;border:1.5px solid var(--border2);border-radius:var(--rs);background:var(--surface);font-family:inherit;font-size:.8rem;color:var(--text2);cursor:pointer}
 .hbtn:hover{background:var(--surface2)}
 
-/* Add goal bar */
-.add-goal-bar{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.add-goal-bar{display:flex;gap:.5rem;margin-bottom:1.25rem}
 .add-goal-bar input{flex:1;padding:.6rem 1rem;border:1.5px solid var(--border2);border-radius:var(--rs);background:var(--surface);font-family:inherit;font-size:.9rem;color:var(--text);outline:none}
 .add-goal-bar input:focus{border-color:var(--accent)}
 
-/* Buttons */
 .btn{padding:.55rem 1rem;border:1.5px solid var(--border2);border-radius:var(--rs);background:var(--surface);font-family:inherit;font-size:.85rem;font-weight:500;color:var(--text);cursor:pointer;white-space:nowrap}
 .btn:hover{background:var(--surface2);border-color:var(--accent)}
 .btn-accent{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -41,6 +42,12 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;letter-sp
 .icon-btn{background:none;border:none;cursor:pointer;color:var(--text3);padding:3px 4px;border-radius:4px;font-size:.85rem;line-height:1;flex-shrink:0}
 .icon-btn:hover{color:var(--text);background:var(--surface2)}
 .icon-btn.danger:hover{color:var(--danger);background:var(--danger-light)}
+
+/* Move arrows */
+.move-btns{display:flex;flex-direction:column;gap:1px;flex-shrink:0}
+.move-btn{background:none;border:none;cursor:pointer;color:var(--border2);font-size:.65rem;line-height:1;padding:1px 3px;border-radius:3px}
+.move-btn:hover{color:var(--accent);background:var(--accent-light)}
+.move-btn:disabled{opacity:.2;cursor:default}
 
 /* Goal card */
 .goal-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);margin-bottom:1rem;overflow:hidden}
@@ -56,16 +63,6 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;letter-sp
 .chevron{font-size:.75rem;color:var(--text3);transition:transform .2s;flex-shrink:0}
 .chevron.open{transform:rotate(180deg)}
 
-/* Drag handle */
-.drag-handle{cursor:grab;color:var(--border2);font-size:1rem;padding:2px;flex-shrink:0;opacity:0;user-select:none;letter-spacing:-1px}
-.drag-handle:active{cursor:grabbing}
-.goal-header:hover .drag-handle,
-.want-header:hover .drag-handle,
-.step-row:hover .drag-handle{opacity:1}
-.dragging{opacity:.35}
-.drop-above{border-top:2px solid var(--accent)!important}
-.drop-below{border-bottom:2px solid var(--accent)!important}
-
 /* Wants */
 .want-section{border-bottom:1px solid var(--border)}
 .want-section:last-child{border-bottom:none}
@@ -76,14 +73,24 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;letter-sp
 .want-pct{font-size:.75rem;color:var(--text3);flex-shrink:0}
 
 /* Steps */
-.step-row{display:flex;align-items:center;gap:.5rem;padding:.5rem 1.1rem .5rem 1.1rem;border-bottom:1px solid var(--border)}
+.step-row{display:flex;align-items:center;gap:.5rem;padding:.5rem 1.1rem;border-bottom:1px solid var(--border)}
 .step-row:last-child{border-bottom:none}
 .step-row:hover{background:#faf8f5}
 .step-row input[type=checkbox]{width:15px;height:15px;flex-shrink:0;cursor:pointer;accent-color:var(--accent)}
 .step-text{flex:1;font-size:.85rem;min-width:0;cursor:text}
 .step-text.done{text-decoration:line-through;color:var(--text3)}
 
-/* Badges */
+/* Priority badge */
+.pri-badge{font-size:.68rem;padding:2px 7px;border-radius:99px;white-space:nowrap;cursor:pointer;flex-shrink:0;border:1px solid}
+.pri-1{background:var(--p1-bg);color:var(--p1-color);border-color:var(--p1-border)}
+.pri-2{background:var(--p2-bg);color:var(--p2-color);border-color:var(--p2-border)}
+.pri-3{background:var(--p3-bg);color:var(--p3-color);border-color:var(--p3-border)}
+.pri-4{background:var(--p4-bg);color:var(--p4-color);border-color:var(--p4-border)}
+.pri-menu{position:absolute;z-index:100;background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--rs);box-shadow:0 4px 16px rgba(0,0,0,.12);padding:.3rem;display:flex;flex-direction:column;gap:2px;min-width:110px}
+.pri-menu-item{font-size:.78rem;padding:.35rem .65rem;border-radius:4px;cursor:pointer;border:none;background:none;font-family:inherit;text-align:left}
+.pri-menu-item:hover{background:var(--surface2)}
+
+/* Deadline / assignee badges */
 .deadline-badge{font-size:.72rem;padding:2px 8px;border-radius:99px;background:var(--surface2);color:var(--text3);border:1px solid var(--border);white-space:nowrap;cursor:pointer;flex-shrink:0}
 .deadline-badge:hover{background:var(--border)}
 .deadline-badge.overdue{background:var(--danger-light);color:var(--danger);border-color:#e5b8b8}
@@ -93,7 +100,7 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;letter-sp
 .assignee-badge:hover{background:#dde1f5}
 .assignee-badge.unset{background:var(--surface2);color:var(--text3);border-color:var(--border);font-style:italic}
 
-/* Inline edit input */
+/* Inline edit */
 .inline-edit{font-family:inherit;font-size:inherit;font-weight:inherit;color:var(--text);background:transparent;border:none;border-bottom:2px solid var(--accent);outline:none;width:100%;padding:0;min-width:60px}
 
 /* Note */
@@ -110,37 +117,40 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;letter-sp
 .add-want-row input:focus{border-color:var(--accent)}
 
 /* Toast */
-#toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(10px);background:var(--text);color:#fff;font-size:.82rem;padding:.5rem 1.1rem;border-radius:99px;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;white-space:nowrap;z-index:999}
+#toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(10px);background:var(--text);color:#fff;font-size:.82rem;padding:.5rem 1.1rem;border-radius:99px;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;white-space:nowrap;z-index:998}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
 .empty{text-align:center;color:var(--text3);font-size:.9rem;padding:3rem 0}
 
-/* View toggle */
-.view-toggle{display:flex;gap:.4rem;margin-bottom:1.25rem}
+/* View tabs */
+.view-toggle{display:flex;gap:.4rem;margin-bottom:1.25rem;flex-wrap:wrap}
 .vtab{padding:.4rem .9rem;border:1.5px solid var(--border2);border-radius:var(--rs);background:var(--surface);font-family:inherit;font-size:.82rem;color:var(--text2);cursor:pointer}
 .vtab:hover{background:var(--surface2)}
 .vtab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-/* Deadline view */
-.dl-group{margin-bottom:1.25rem}
-.dl-group-header{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);padding:.3rem 0 .4rem;border-bottom:1.5px solid var(--border);margin-bottom:.4rem}
-.dl-group-header.overdue{color:var(--danger)}
-.dl-group-header.soon{color:var(--warn)}
-.dl-row{display:flex;align-items:center;gap:.5rem;padding:.45rem .75rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);margin-bottom:.35rem}
-.dl-row:hover{background:var(--surface2)}
-.dl-row input[type=checkbox]{width:15px;height:15px;flex-shrink:0;cursor:pointer;accent-color:var(--accent)}
-.dl-text{flex:1;font-size:.85rem;min-width:0;cursor:text}
-.dl-text.done{text-decoration:line-through;color:var(--text3)}
-.dl-crumb{font-size:.7rem;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
-.dl-date{font-size:.72rem;padding:2px 8px;border-radius:99px;background:var(--surface2);color:var(--text3);border:1px solid var(--border);white-space:nowrap;cursor:pointer;flex-shrink:0}
-.dl-date:hover{background:var(--border)}
-.dl-date.overdue{background:var(--danger-light);color:var(--danger);border-color:#e5b8b8}
-.dl-date.soon{background:var(--warn-light);color:var(--warn);border-color:#e5d5a0}
-.dl-assignee{font-size:.72rem;padding:2px 8px;border-radius:99px;background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-border);white-space:nowrap;flex-shrink:0}
+/* Secondary views (deadline + priority) shared row styles */
+.sv-group{margin-bottom:1.25rem}
+.sv-group-header{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);padding:.3rem 0 .4rem;border-bottom:1.5px solid var(--border);margin-bottom:.4rem}
+.sv-group-header.overdue{color:var(--danger)}
+.sv-group-header.soon{color:var(--warn)}
+.sv-group-header.p1{color:var(--p1-color)}
+.sv-group-header.p2{color:var(--p2-color)}
+.sv-group-header.p3{color:var(--p3-color)}
+.sv-row{display:flex;align-items:center;gap:.5rem;padding:.45rem .75rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);margin-bottom:.35rem}
+.sv-row:hover{background:var(--surface2)}
+.sv-row input[type=checkbox]{width:15px;height:15px;flex-shrink:0;cursor:pointer;accent-color:var(--accent)}
+.sv-text{flex:1;font-size:.85rem;min-width:0;cursor:text}
+.sv-text.done{text-decoration:line-through;color:var(--text3)}
+.sv-crumb{font-size:.7rem;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;flex-shrink:0}
+.sv-date{font-size:.72rem;padding:2px 8px;border-radius:99px;background:var(--surface2);color:var(--text3);border:1px solid var(--border);white-space:nowrap;cursor:pointer;flex-shrink:0}
+.sv-date:hover{background:var(--border)}
+.sv-date.overdue{background:var(--danger-light);color:var(--danger);border-color:#e5b8b8}
+.sv-date.soon{background:var(--warn-light);color:var(--warn);border-color:#e5d5a0}
+.sv-assignee{font-size:.72rem;padding:2px 8px;border-radius:99px;background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-border);white-space:nowrap;flex-shrink:0}
 
 /* Print */
 @media print {
-  .header-btns,.add-goal-bar,.add-step-row,.add-want-row,.icon-btn,.drag-handle,.progress-pill,#toast,.empty{display:none!important}
+  .header-btns,.add-goal-bar,.add-step-row,.add-want-row,.icon-btn,.move-btns,
+  .progress-pill,#toast,.empty,.view-toggle,.pri-menu{display:none!important}
   body{background:#fff;padding:1rem;font-family:Georgia,serif;color:#000}
   h1{font-size:1.4rem;border-bottom:1.5px solid #000;padding-bottom:.3rem;margin-bottom:.2rem}
   .subtitle{font-size:.8rem;color:#555;margin-bottom:1rem}
@@ -163,6 +173,11 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;letter-sp
   .deadline-badge.none{display:none}
   .assignee-badge{background:none;border:none;color:#3a4a7a;padding:0;border-radius:0}
   .assignee-badge.unset{display:none}
+  .pri-badge{background:none;border:none;padding:0;border-radius:0}
+  .pri-1::before{content:"[High] "}
+  .pri-2::before{content:"[Med] "}
+  .pri-3::before{content:"[Low] "}
+  .pri-4{display:none}
   .step-note-input{display:none!important}
   .step-note-print{display:block;padding-left:1rem;color:#555;font-style:italic;font-size:.78rem;white-space:pre-wrap}
   .step-row input[type=checkbox]{-webkit-appearance:none;width:10px;height:10px;border:1.5px solid #555;border-radius:2px;display:inline-block;vertical-align:middle;flex-shrink:0}
@@ -181,60 +196,72 @@ h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;letter-sp
   </div>
   <h1>My Goals</h1>
   <p class="subtitle">Track what you want and how to get there.</p>
-  <div id="add-goal-section">
-  <div class="add-goal-bar">
-    <input type="text" id="ng-input" placeholder="Add a new goal…" />
-    <button class="btn btn-accent" id="btn-add-goal">+ Add Goal</button>
-  </div>
-  </div>
   <div class="view-toggle">
     <button class="vtab active" id="tab-goals">🎯 Goals</button>
     <button class="vtab" id="tab-deadlines">📅 By Deadline</button>
+    <button class="vtab" id="tab-priority">⚡ By Priority</button>
+  </div>
+  <div id="add-goal-section">
+    <div class="add-goal-bar">
+      <input type="text" id="ng-input" placeholder="Add a new goal…" />
+      <button class="btn btn-accent" id="btn-add-goal">+ Add Goal</button>
+    </div>
   </div>
   <div id="goals-list"></div>
-  <div id="deadline-list" style="display:none"></div>
-  <div class="empty" id="empty-state" style="display:none">No goals yet. Add one above to get started.</div>
+  <div id="secondary-list" style="display:none"></div>
+  <div class="empty" id="empty-state" style="display:none">No goals yet. Add one above.</div>
 </div>
 <div id="toast"></div>
 
 <script>
-// ---- State ----
+// ---- Constants ----
 const STORAGE_KEY = "goal_tracker_v4";
 const TODAY = new Date(); TODAY.setHours(0,0,0,0);
 let nid = 500;
 
+const PRIORITIES = [
+  { val:1, label:"🔴 High",   cls:"pri-1" },
+  { val:2, label:"🟡 Medium", cls:"pri-2" },
+  { val:3, label:"🟢 Low",    cls:"pri-3" },
+  { val:4, label:"⚪ None",   cls:"pri-4" },
+];
+
 const SAMPLE = [
   { id:1, title:"New Home", open:true, wants:[
     { id:11, label:"Beautiful view", open:true, steps:[
-      { id:111, text:"Research neighborhoods with scenic views", done:false, date:"2025-03-01", assignee:"", note:"" },
-      { id:112, text:"Talk to realtor", done:false, date:"2026-06-30", assignee:"", note:"" },
-      { id:113, text:"Visit 5 candidate properties", done:false, date:"2026-08-15", assignee:"", note:"" }
+      { id:111, text:"Research neighborhoods with scenic views", done:false, date:"2025-03-01", assignee:"", note:"", priority:0 },
+      { id:112, text:"Talk to realtor", done:false, date:"2026-06-30", assignee:"", note:"", priority:1 },
+      { id:113, text:"Visit 5 candidate properties", done:false, date:"2026-08-15", assignee:"", note:"", priority:2 },
     ]},
     { id:12, label:"Home office space", open:false, steps:[
-      { id:121, text:"Define minimum room size requirements", done:true, date:"2025-11-01", assignee:"", note:"" },
-      { id:122, text:"Add office as filter in property search", done:false, date:"2026-06-15", assignee:"", note:"" }
+      { id:121, text:"Define minimum room size requirements", done:true, date:"2025-11-01", assignee:"", note:"", priority:0 },
+      { id:122, text:"Add office as filter in property search", done:false, date:"2026-06-15", assignee:"", note:"", priority:2 },
     ]}
   ]},
   { id:2, title:"Financial Independence", open:false, wants:[
     { id:21, label:"6-month emergency fund", open:true, steps:[
-      { id:211, text:"Calculate monthly expenses", done:true, date:"2025-10-01", assignee:"", note:"" },
-      { id:212, text:"Set up automatic monthly transfer", done:false, date:"2026-07-01", assignee:"", note:"" }
+      { id:211, text:"Calculate monthly expenses", done:true, date:"2025-10-01", assignee:"", note:"", priority:0 },
+      { id:212, text:"Set up automatic monthly transfer", done:false, date:"2026-07-01", assignee:"", note:"", priority:1 },
     ]}
   ]}
 ];
 
+// ---- State ----
 let state;
 try {
   const raw = localStorage.getItem(STORAGE_KEY);
   state = raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(SAMPLE));
+  // Migrate: ensure priority field exists on all steps
+  state.forEach(g => g.wants.forEach(w => w.steps.forEach(s => { if (s.priority === undefined) s.priority = 0; })));
 } catch(e) {
   state = JSON.parse(JSON.stringify(SAMPLE));
 }
 
+let currentView = "goals";
+
 function save() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
 }
-
 function newId() { return ++nid; }
 
 // ---- Toast ----
@@ -255,13 +282,10 @@ function dateStatus(d) {
   if (diff <= 14) return "soon";
   return "ok";
 }
-
 function fmtDate(d) {
   if (!d) return "Set deadline";
-  const dt = new Date(d + "T00:00:00");
-  return dt.toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" });
+  return new Date(d + "T00:00:00").toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" });
 }
-
 function parseTypedDate(str) {
   str = str.trim();
   if (!str) return "";
@@ -271,8 +295,7 @@ function parseTypedDate(str) {
   }
   const m = str.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{2,4})$/);
   if (m) {
-    let y = parseInt(m[3]);
-    if (y < 100) y += 2000;
+    let y = parseInt(m[3]); if (y < 100) y += 2000;
     const mo = m[1].padStart(2,"0"), dy = m[2].padStart(2,"0");
     const iso = `${y}-${mo}-${dy}`;
     const d = new Date(iso + "T00:00:00");
@@ -280,12 +303,13 @@ function parseTypedDate(str) {
   }
   return null;
 }
-
 function pct(want) {
   if (!want.steps.length) return 0;
   return Math.round(want.steps.filter(s => s.done).length / want.steps.length * 100);
 }
-
+function priInfo(p) {
+  return PRIORITIES.find(x => x.val === p) || { val:0, label:"⚪ Priority", cls:"pri-4" };
+}
 function getG(gid) { return state.find(g => g.id === gid); }
 function getW(gid, wid) { return getG(gid).wants.find(w => w.id === wid); }
 function getS(gid, wid, sid) { return getW(gid, wid).steps.find(s => s.id === sid); }
@@ -297,17 +321,22 @@ function toggleStep(gid, wid, sid, v) { getS(gid, wid, sid).done = v; save(); re
 
 function deleteGoal(gid) {
   if (!confirm("Delete this goal and everything under it?")) return;
-  state = state.filter(g => g.id !== gid);
-  save(); render(); toast("Goal deleted.");
+  state = state.filter(g => g.id !== gid); save(); render(); toast("Goal deleted.");
 }
 function deleteWant(gid, wid) {
   if (!confirm("Delete this want and its steps?")) return;
-  getG(gid).wants = getG(gid).wants.filter(w => w.id !== wid);
-  save(); render(); toast("Want deleted.");
+  getG(gid).wants = getG(gid).wants.filter(w => w.id !== wid); save(); render(); toast("Want deleted.");
 }
 function deleteStep(gid, wid, sid) {
-  getW(gid, wid).steps = getW(gid, wid).steps.filter(s => s.id !== sid);
-  save(); render(); toast("Step deleted.");
+  getW(gid, wid).steps = getW(gid, wid).steps.filter(s => s.id !== sid); save(); render(); toast("Step deleted.");
+}
+
+function moveItem(arr, id, dir) {
+  const i = arr.findIndex(x => x.id === id);
+  if (i === -1) return;
+  const j = i + dir;
+  if (j < 0 || j >= arr.length) return;
+  [arr[i], arr[j]] = [arr[j], arr[i]];
 }
 
 function addGoal() {
@@ -316,14 +345,12 @@ function addGoal() {
   state.push({ id:newId(), title:inp.value.trim(), open:true, wants:[] });
   inp.value = ""; save(); render();
 }
-
 function addWant(gid) {
   const inp = document.getElementById("nw-" + gid);
   if (!inp || !inp.value.trim()) return;
   getG(gid).wants.push({ id:newId(), label:inp.value.trim(), open:true, steps:[] });
   inp.value = ""; save(); render();
 }
-
 function addStep(gid, wid) {
   const nsInp = document.getElementById("ns-" + wid);
   const naInp = document.getElementById("na-" + wid);
@@ -336,45 +363,25 @@ function addStep(gid, wid) {
     if (p === null) { toast("Date format: MM/DD/YY or MM/DD/YYYY"); return; }
     parsedDate = p;
   }
-  getW(gid, wid).steps.push({
-    id: newId(),
-    text: nsInp.value.trim(),
-    done: false,
-    date: parsedDate,
-    assignee: naInp ? naInp.value.trim() : "",
-    note: ""
-  });
-  nsInp.value = "";
-  if (naInp) naInp.value = "";
-  if (ndInp) ndInp.value = "";
+  getW(gid, wid).steps.push({ id:newId(), text:nsInp.value.trim(), done:false, date:parsedDate, assignee:naInp?naInp.value.trim():"", note:"", priority:0 });
+  nsInp.value = ""; if (naInp) naInp.value = ""; if (ndInp) ndInp.value = "";
   save(); render();
 }
-
-function saveNote(gid, wid, sid, val) {
-  getS(gid, wid, sid).note = val;
-  save();
-}
+function saveNote(gid, wid, sid, val) { getS(gid, wid, sid).note = val; save(); }
 
 // ---- Inline editing ----
-// Replaces a display element with an input in-place, no innerHTML
 function inlineEdit(displayEl, currentVal, onCommit) {
   if (displayEl.dataset.editing === "1") return;
   displayEl.dataset.editing = "1";
-
   const inp = document.createElement("input");
   inp.className = "inline-edit";
   inp.value = currentVal;
-
-  // Hide the text content, show input
   displayEl.textContent = "";
   displayEl.appendChild(inp);
-  inp.focus();
-  inp.select();
-
+  inp.focus(); inp.select();
   let done = false;
   function commit() {
-    if (done) return;
-    done = true;
+    if (done) return; done = true;
     const val = inp.value.trim() || currentVal;
     delete displayEl.dataset.editing;
     onCommit(val);
@@ -384,30 +391,21 @@ function inlineEdit(displayEl, currentVal, onCommit) {
     if (e.key === "Enter") { e.preventDefault(); inp.blur(); }
     if (e.key === "Escape") { done = true; delete displayEl.dataset.editing; render(); }
   });
-  // Prevent row click from firing while editing
   inp.addEventListener("click", function(e) { e.stopPropagation(); });
 }
 
-// Badge text editing (deadline, assignee)
 function inlineBadgeEdit(badgeEl, currentVal, placeholder, onCommit) {
   if (badgeEl.dataset.editing === "1") return;
   badgeEl.dataset.editing = "1";
-
   const inp = document.createElement("input");
   inp.className = "inline-edit";
-  inp.style.cssText = "font-size:.72rem;width:90px;border-bottom-color:#3a4a7a";
-  inp.value = currentVal;
-  inp.placeholder = placeholder;
-
-  badgeEl.textContent = "";
-  badgeEl.appendChild(inp);
-  inp.focus();
-  inp.select();
-
+  inp.style.cssText = "font-size:.72rem;width:90px";
+  inp.value = currentVal; inp.placeholder = placeholder;
+  badgeEl.textContent = ""; badgeEl.appendChild(inp);
+  inp.focus(); inp.select();
   let done = false;
   function commit() {
-    if (done) return;
-    done = true;
+    if (done) return; done = true;
     delete badgeEl.dataset.editing;
     onCommit(inp.value.trim());
   }
@@ -419,7 +417,40 @@ function inlineBadgeEdit(badgeEl, currentVal, placeholder, onCommit) {
   inp.addEventListener("click", function(e) { e.stopPropagation(); });
 }
 
-// ---- Toggle note ----
+// ---- Priority picker ----
+let openMenu = null;
+function closePriMenu() {
+  if (openMenu) { openMenu.remove(); openMenu = null; }
+}
+document.addEventListener("click", closePriMenu);
+
+function showPriMenu(anchorEl, currentPri, onSelect) {
+  closePriMenu();
+  const menu = document.createElement("div");
+  menu.className = "pri-menu";
+  PRIORITIES.forEach(function(p) {
+    const item = document.createElement("button");
+    item.className = "pri-menu-item";
+    item.textContent = (p.val === currentPri ? "✓ " : "  ") + p.label;
+    item.addEventListener("click", function(e) { e.stopPropagation(); closePriMenu(); onSelect(p.val); });
+    menu.appendChild(item);
+  });
+  // Also offer "clear"
+  const clear = document.createElement("button");
+  clear.className = "pri-menu-item";
+  clear.textContent = "  Clear";
+  clear.addEventListener("click", function(e) { e.stopPropagation(); closePriMenu(); onSelect(0); });
+  menu.appendChild(clear);
+
+  document.body.appendChild(menu);
+  const rect = anchorEl.getBoundingClientRect();
+  menu.style.position = "fixed";
+  menu.style.top = (rect.bottom + 4) + "px";
+  menu.style.left = rect.left + "px";
+  openMenu = menu;
+}
+
+// ---- Note toggle ----
 function toggleNote(sid) {
   const area = document.getElementById("note-" + sid);
   if (!area) return;
@@ -433,109 +464,56 @@ function exportData() {
   const blob = new Blob([JSON.stringify(state, null, 2)], { type:"application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
-  a.href = url;
-  a.download = "goals-" + new Date().toISOString().slice(0,10) + ".json";
-  a.click();
-  URL.revokeObjectURL(url);
-  toast("Exported!");
+  a.href = url; a.download = "goals-" + new Date().toISOString().slice(0,10) + ".json";
+  a.click(); URL.revokeObjectURL(url); toast("Exported!");
 }
-
 function importData(file) {
   if (!file) return;
   const reader = new FileReader();
   reader.onload = function(e) {
     try {
       const parsed = JSON.parse(e.target.result);
-      if (!Array.isArray(parsed)) throw new Error("bad format");
+      if (!Array.isArray(parsed)) throw new Error();
       if (!confirm("Replace your current goals with the imported file?")) return;
       state = parsed;
-      save(); render(); toast("Imported successfully!");
-    } catch(err) {
-      toast("Import failed — file doesn't look right.");
-    }
+      state.forEach(g => g.wants.forEach(w => w.steps.forEach(s => { if (s.priority === undefined) s.priority = 0; })));
+      save(); render(); toast("Imported!");
+    } catch(err) { toast("Import failed — file doesn't look right."); }
   };
   reader.readAsText(file);
 }
-
 function copyText() {
+  const PRI_LABELS = {1:"[High]", 2:"[Med]", 3:"[Low]"};
   const lines = [];
-  const chk = s => s.done ? "[x]" : "[ ]";
-  state.forEach(goal => {
+  state.forEach(function(goal) {
     const total = goal.wants.reduce((a,w) => a + w.steps.length, 0);
     const done  = goal.wants.reduce((a,w) => a + w.steps.filter(s => s.done).length, 0);
     lines.push("🎯 " + goal.title + " (" + done + "/" + total + " done)");
-    goal.wants.forEach(want => {
+    goal.wants.forEach(function(want) {
       lines.push("  ★ " + want.label);
-      want.steps.forEach(s => {
-        const dateStr = s.date ? "  [" + fmtDate(s.date) + "]" : "";
-        const whoStr  = s.assignee ? "  → " + s.assignee : "";
-        lines.push("    " + chk(s) + " " + s.text + dateStr + whoStr);
-        if (s.note && s.note.trim()) {
-          s.note.trim().split("\n").forEach(l => lines.push("        " + l));
-        }
+      want.steps.forEach(function(s) {
+        const chk  = s.done ? "[x]" : "[ ]";
+        const dateStr  = s.date ? "  [" + fmtDate(s.date) + "]" : "";
+        const whoStr   = s.assignee ? "  → " + s.assignee : "";
+        const priStr   = s.priority && PRI_LABELS[s.priority] ? "  " + PRI_LABELS[s.priority] : "";
+        lines.push("    " + chk + " " + s.text + dateStr + whoStr + priStr);
+        if (s.note && s.note.trim()) s.note.trim().split("\n").forEach(l => lines.push("        " + l));
       });
     });
     lines.push("");
   });
   const text = lines.join("\n").trimEnd();
-  navigator.clipboard.writeText(text)
-    .then(() => toast("Copied to clipboard!"))
-    .catch(() => { prompt("Copy this:", text); });
+  navigator.clipboard.writeText(text).then(() => toast("Copied!")).catch(() => { prompt("Copy this:", text); });
 }
 
-// ---- Drag and drop ----
-let drag = null;
-
-function clearDrop() {
-  document.querySelectorAll(".drop-above,.drop-below,.dragging").forEach(el => {
-    el.classList.remove("drop-above","drop-below","dragging");
-  });
-}
-
-function makeDraggable(el, type, ids) {
-  const handle = el.querySelector(".drag-handle");
-  if (!handle) return;
-  handle.setAttribute("draggable","true");
-  handle.addEventListener("dragstart", function(e) {
-    drag = { type, ids, el };
-    setTimeout(() => el.classList.add("dragging"), 0);
-    e.dataTransfer.effectAllowed = "move";
-    e.stopPropagation();
-  });
-  handle.addEventListener("dragend", function() { clearDrop(); drag = null; });
-  el.addEventListener("dragover", function(e) {
-    if (!drag || drag.type !== type) return;
-    e.preventDefault(); e.stopPropagation();
-    clearDrop();
-    const mid = el.getBoundingClientRect().top + el.offsetHeight / 2;
-    el.classList.add(e.clientY < mid ? "drop-above" : "drop-below");
-  });
-  el.addEventListener("dragleave", function(e) {
-    // Only clear if leaving to outside this element
-    if (!el.contains(e.relatedTarget)) {
-      el.classList.remove("drop-above","drop-below");
-    }
-  });
-  el.addEventListener("drop", function(e) {
-    e.preventDefault(); e.stopPropagation();
-    if (!drag || drag.type !== type || drag.el === el) { clearDrop(); return; }
-    const above = el.classList.contains("drop-above");
-    clearDrop();
-
-    function reorder(arr, fromId, toId) {
-      const fi = arr.findIndex(x => x.id === fromId);
-      if (fi === -1) return;
-      const [item] = arr.splice(fi, 1);
-      const ni = arr.findIndex(x => x.id === toId);
-      if (ni === -1) { arr.splice(fi, 0, item); return; }
-      arr.splice(above ? ni : ni + 1, 0, item);
-    }
-
-    if (type === "goal")      reorder(state, drag.ids.id, ids.id);
-    else if (type === "want") reorder(getG(ids.gid).wants, drag.ids.id, ids.id);
-    else if (type === "step") reorder(getW(ids.gid, ids.wid).steps, drag.ids.id, ids.id);
-    save(); render();
-  });
+// ---- View switching ----
+function setView(v) {
+  currentView = v;
+  document.getElementById("tab-goals").className    = "vtab" + (v==="goals"    ?" active":"");
+  document.getElementById("tab-deadlines").className= "vtab" + (v==="deadlines"?" active":"");
+  document.getElementById("tab-priority").className = "vtab" + (v==="priority" ?" active":"");
+  document.getElementById("add-goal-section").style.display = v === "goals" ? "" : "none";
+  render();
 }
 
 // ---- Build helpers ----
@@ -544,195 +522,167 @@ function el(tag, props) {
   if (props) Object.assign(e, props);
   return e;
 }
-
 function iconBtn(emoji, title, danger, onClick) {
-  const b = el("button", { className:"icon-btn" + (danger ? " danger" : ""), title, textContent:emoji });
+  const b = el("button", { className:"icon-btn"+(danger?" danger":""), title, textContent:emoji });
   b.addEventListener("click", function(e) { e.stopPropagation(); onClick(); });
   return b;
 }
-
-function dragHandle() {
-  const s = el("span", { className:"drag-handle", title:"Drag to reorder", textContent:"⠿⠿" });
-  return s;
+function moveButtons(arr, id, onMoved) {
+  const wrap = el("div", { className:"move-btns" });
+  const idx = arr.findIndex(x => x.id === id);
+  const upBtn = el("button", { className:"move-btn", title:"Move up", textContent:"▲" });
+  const dnBtn = el("button", { className:"move-btn", title:"Move down", textContent:"▼" });
+  if (idx === 0) upBtn.disabled = true;
+  if (idx === arr.length - 1) dnBtn.disabled = true;
+  upBtn.addEventListener("click", function(e) { e.stopPropagation(); moveItem(arr, id, -1); save(); onMoved(); });
+  dnBtn.addEventListener("click", function(e) { e.stopPropagation(); moveItem(arr, id, 1);  save(); onMoved(); });
+  wrap.appendChild(upBtn); wrap.appendChild(dnBtn);
+  return wrap;
 }
 
-// ---- Render ----
-function render() {
-  if (currentView === "deadlines") {
-    renderDeadlines();
-    return;
-  }
+// ---- Step row builder (shared by goals view) ----
+function buildStepRow(s, goal, want) {
+  const ds = dateStatus(s.date);
+  const row = el("div", { className:"step-row" });
+
+  const cb = el("input"); cb.type = "checkbox"; cb.checked = s.done;
+  cb.addEventListener("change", function(e) { toggleStep(goal.id, want.id, s.id, e.target.checked); });
+
+  const stxt = el("span", { className:"step-text"+(s.done?" done":""), textContent:s.text });
+  stxt.addEventListener("click", function(e) {
+    e.stopPropagation();
+    inlineEdit(stxt, s.text, function(val) { s.text = val; save(); render(); });
+  });
+
+  const noteBtn = iconBtn("📝", s.note?"Edit note":"Add note", false, function() { toggleNote(s.id); });
+  if (s.note) noteBtn.style.opacity = "1";
+
+  // Priority badge
+  const pi = priInfo(s.priority);
+  const priBadge = el("span", { className:"pri-badge " + (s.priority ? pi.cls : "pri-4"), textContent: s.priority ? pi.label : "⚪", title:"Set priority" });
+  priBadge.addEventListener("click", function(e) {
+    e.stopPropagation();
+    showPriMenu(priBadge, s.priority, function(val) { s.priority = val; save(); render(); });
+  });
+
+  // Assignee badge
+  const asBadge = el("span", { className:"assignee-badge"+(s.assignee?"":" unset"), textContent:"👤 "+(s.assignee||"Assign"), title:"Click to assign" });
+  asBadge.addEventListener("click", function(e) {
+    e.stopPropagation();
+    inlineBadgeEdit(asBadge, s.assignee||"", "Name…", function(val) { s.assignee = val; save(); render(); });
+  });
+
+  // Deadline badge
+  const dbBadge = el("span", { className:"deadline-badge "+ds, textContent:(ds==="overdue"?"⚠ ":"")+fmtDate(s.date), title:"Click to set deadline" });
+  dbBadge.addEventListener("click", function(e) {
+    e.stopPropagation();
+    inlineBadgeEdit(dbBadge, s.date?fmtDate(s.date):"", "MM/DD/YY", function(val) {
+      if (!val) { s.date=""; save(); render(); return; }
+      const p = parseTypedDate(val);
+      if (p===null) { toast("Use MM/DD/YY or MM/DD/YYYY"); render(); return; }
+      s.date=p; save(); render();
+    });
+  });
+
+  row.appendChild(moveButtons(want.steps, s.id, render));
+  row.appendChild(cb);
+  row.appendChild(stxt);
+  row.appendChild(iconBtn("✏️","Edit step",false,function(){ inlineEdit(stxt,s.text,function(val){s.text=val;save();render();}); }));
+  row.appendChild(noteBtn);
+  row.appendChild(priBadge);
+  row.appendChild(asBadge);
+  row.appendChild(dbBadge);
+  row.appendChild(iconBtn("✕","Delete step",true,function(){ deleteStep(goal.id,want.id,s.id); }));
+  return row;
+}
+
+// ---- Render goals view ----
+function renderGoals() {
   const list  = document.getElementById("goals-list");
-  const dlList = document.getElementById("deadline-list");
+  const secList = document.getElementById("secondary-list");
   const empty = document.getElementById("empty-state");
-  list.style.display = "";
-  dlList.style.display = "none";
+  list.style.display = ""; secList.style.display = "none";
   list.innerHTML = "";
   empty.style.display = state.length ? "none" : "block";
 
   state.forEach(function(goal) {
-    const totalSteps = goal.wants.reduce((a,w) => a + w.steps.length, 0);
-    const doneSteps  = goal.wants.reduce((a,w) => a + w.steps.filter(s => s.done).length, 0);
-    const pctG = totalSteps ? Math.round(doneSteps / totalSteps * 100) : 0;
+    const totalSteps = goal.wants.reduce((a,w) => a+w.steps.length,0);
+    const doneSteps  = goal.wants.reduce((a,w) => a+w.steps.filter(s=>s.done).length,0);
+    const pctG = totalSteps ? Math.round(doneSteps/totalSteps*100) : 0;
 
-    // ---- Goal card ----
     const card = el("div", { className:"goal-card" });
-
-    // Goal header
-    const hdr = el("div", { className:"goal-header" + (goal.open ? " open" : "") });
+    const hdr  = el("div", { className:"goal-header"+(goal.open?" open":"") });
 
     const titleWrap = el("div", { className:"goal-title-wrap" });
     const titleDiv  = el("div", { className:"goal-title", textContent:goal.title });
-    const statsDiv  = el("div", { className:"goal-stats", textContent: doneSteps + " of " + totalSteps + " steps done" });
-    titleWrap.appendChild(titleDiv);
-    titleWrap.appendChild(statsDiv);
+    const statsDiv  = el("div", { className:"goal-stats", textContent:doneSteps+" of "+totalSteps+" steps done" });
+    titleDiv.addEventListener("click", function(e) { e.stopPropagation(); inlineEdit(titleDiv,goal.title,function(val){goal.title=val;save();render();}); });
+    titleWrap.appendChild(titleDiv); titleWrap.appendChild(statsDiv);
 
-    // Click title to edit
-    titleDiv.addEventListener("click", function(e) {
-      e.stopPropagation();
-      inlineEdit(titleDiv, goal.title, function(val) { goal.title = val; save(); render(); });
-    });
-
-    const pill = el("div", { className:"progress-pill" });
-    const fill = el("div", { className:"progress-fill" });
-    fill.style.width = pctG + "%";
+    const pill = el("div",{className:"progress-pill"});
+    const fill = el("div",{className:"progress-fill"}); fill.style.width=pctG+"%";
     pill.appendChild(fill);
 
-    const chev = el("span", { className:"chevron" + (goal.open ? " open" : ""), textContent:"▼" });
+    const chev = el("span",{className:"chevron"+(goal.open?" open":""),textContent:"▼"});
 
-    hdr.appendChild(dragHandle());
-    hdr.appendChild(el("span", { className:"goal-icon", textContent:"🎯" }));
+    hdr.appendChild(moveButtons(state, goal.id, render));
+    hdr.appendChild(el("span",{className:"goal-icon",textContent:"🎯"}));
     hdr.appendChild(titleWrap);
     hdr.appendChild(pill);
-    hdr.appendChild(iconBtn("✏️", "Rename", false, function() {
-      inlineEdit(titleDiv, goal.title, function(val) { goal.title = val; save(); render(); });
-    }));
-    hdr.appendChild(iconBtn("🗑", "Delete goal", true, function() { deleteGoal(goal.id); }));
+    hdr.appendChild(iconBtn("✏️","Rename",false,function(){ inlineEdit(titleDiv,goal.title,function(val){goal.title=val;save();render();}); }));
+    hdr.appendChild(iconBtn("🗑","Delete goal",true,function(){ deleteGoal(goal.id); }));
     hdr.appendChild(chev);
-
     hdr.addEventListener("click", function() { toggleGoal(goal.id); });
     card.appendChild(hdr);
-    makeDraggable(card, "goal", { id:goal.id });
 
     if (goal.open) {
-      const body = el("div", { className:"wants-body" });
+      const body = el("div",{className:"wants-body"});
 
       goal.wants.forEach(function(want) {
         const p = pct(want);
-        const sec = el("div", { className:"want-section" });
+        const sec = el("div",{className:"want-section"});
+        const wh  = el("div",{className:"want-header"});
 
-        // Want header
-        const wh = el("div", { className:"want-header" });
-        const wlabel = el("span", { className:"want-label", textContent:want.label });
+        const wlabel = el("span",{className:"want-label",textContent:want.label});
+        wlabel.addEventListener("click",function(e){ e.stopPropagation(); inlineEdit(wlabel,want.label,function(val){want.label=val;save();render();}); });
 
-        // Click want label to edit
-        wlabel.addEventListener("click", function(e) {
-          e.stopPropagation();
-          inlineEdit(wlabel, want.label, function(val) { want.label = val; save(); render(); });
-        });
+        const wpct = el("span",{className:"want-pct",textContent:p+"%"});
+        const chev2= el("span",{className:"chevron"+(want.open?" open":""),textContent:"▼"});
 
-        const wpct = el("span", { className:"want-pct", textContent:p + "%" });
-        const chev2 = el("span", { className:"chevron" + (want.open ? " open" : ""), textContent:"▼" });
-
-        wh.appendChild(dragHandle());
-        wh.appendChild(el("span", { className:"want-icon", textContent:"★" }));
+        wh.appendChild(moveButtons(goal.wants, want.id, render));
+        wh.appendChild(el("span",{className:"want-icon",textContent:"★"}));
         wh.appendChild(wlabel);
         wh.appendChild(wpct);
-        wh.appendChild(iconBtn("✏️", "Rename", false, function() {
-          inlineEdit(wlabel, want.label, function(val) { want.label = val; save(); render(); });
-        }));
-        wh.appendChild(iconBtn("🗑", "Delete want", true, function() { deleteWant(goal.id, want.id); }));
+        wh.appendChild(iconBtn("✏️","Rename",false,function(){ inlineEdit(wlabel,want.label,function(val){want.label=val;save();render();}); }));
+        wh.appendChild(iconBtn("🗑","Delete want",true,function(){ deleteWant(goal.id,want.id); }));
         wh.appendChild(chev2);
-        wh.addEventListener("click", function() { toggleWant(goal.id, want.id); });
+        wh.addEventListener("click",function(){ toggleWant(goal.id,want.id); });
         sec.appendChild(wh);
-        makeDraggable(sec, "want", { gid:goal.id, id:want.id });
 
         if (want.open) {
-          const wb = el("div", { className:"want-body" });
+          const wb = el("div",{className:"want-body"});
 
           want.steps.forEach(function(s) {
-            const ds = dateStatus(s.date);
+            wb.appendChild(buildStepRow(s, goal, want));
 
-            const row = el("div", { className:"step-row" });
-
-            const cb = el("input"); cb.type = "checkbox"; cb.checked = s.done;
-            cb.addEventListener("change", function(e) { toggleStep(goal.id, want.id, s.id, e.target.checked); });
-
-            const stxt = el("span", { className:"step-text" + (s.done ? " done" : ""), textContent:s.text });
-            stxt.addEventListener("click", function(e) {
-              e.stopPropagation();
-              inlineEdit(stxt, s.text, function(val) { s.text = val; save(); render(); });
-            });
-
-            // Note button
-            const noteBtn = iconBtn("📝", s.note ? "Edit note" : "Add note", false, function() { toggleNote(s.id); });
-            if (s.note) noteBtn.style.opacity = "1";
-
-            // Assignee badge
-            const asBadge = el("span", {
-              className: "assignee-badge" + (s.assignee ? "" : " unset"),
-              textContent: "👤 " + (s.assignee || "Assign"),
-              title: "Click to assign"
-            });
-            asBadge.addEventListener("click", function(e) {
-              e.stopPropagation();
-              inlineBadgeEdit(asBadge, s.assignee || "", "Name…", function(val) {
-                s.assignee = val; save(); render();
-              });
-            });
-
-            // Deadline badge
-            const dbBadge = el("span", {
-              className: "deadline-badge " + ds,
-              textContent: (ds === "overdue" ? "⚠ " : "") + fmtDate(s.date),
-              title: "Click to set deadline"
-            });
-            dbBadge.addEventListener("click", function(e) {
-              e.stopPropagation();
-              inlineBadgeEdit(dbBadge, s.date ? fmtDate(s.date) : "", "MM/DD/YY", function(val) {
-                if (!val) { s.date = ""; save(); render(); return; }
-                const p = parseTypedDate(val);
-                if (p === null) { toast("Use MM/DD/YY or MM/DD/YYYY"); render(); return; }
-                s.date = p; save(); render();
-              });
-            });
-
-            row.appendChild(dragHandle());
-            row.appendChild(cb);
-            row.appendChild(stxt);
-            row.appendChild(iconBtn("✏️", "Edit step", false, function() {
-              inlineEdit(stxt, s.text, function(val) { s.text = val; save(); render(); });
-            }));
-            row.appendChild(noteBtn);
-            row.appendChild(asBadge);
-            row.appendChild(dbBadge);
-            row.appendChild(iconBtn("✕", "Delete step", true, function() { deleteStep(goal.id, want.id, s.id); }));
-
-            makeDraggable(row, "step", { gid:goal.id, wid:want.id, id:s.id });
-            wb.appendChild(row);
-
-            // Note textarea
-            const noteArea = el("textarea", { className:"step-note-input", id:"note-"+s.id, placeholder:"Add a note…" });
-            noteArea.value = s.note || "";
-            if (s.note) noteArea.style.display = "block";
-            noteArea.addEventListener("input", function() { saveNote(goal.id, want.id, s.id, noteArea.value); });
+            const noteArea = el("textarea",{className:"step-note-input",id:"note-"+s.id,placeholder:"Add a note…"});
+            noteArea.value = s.note||"";
+            if (s.note) noteArea.style.display="block";
+            noteArea.addEventListener("input",function(){ saveNote(goal.id,want.id,s.id,noteArea.value); });
             wb.appendChild(noteArea);
 
-            // Print-only note
             if (s.note) {
-              const np = el("div", { className:"step-note-print", textContent:s.note });
-              wb.appendChild(np);
+              wb.appendChild(el("div",{className:"step-note-print",textContent:s.note}));
             }
           });
 
-          // Add step row
-          const ar = el("div", { className:"add-step-row" });
-          const nsInp = el("input"); nsInp.type="text"; nsInp.id="ns-"+want.id; nsInp.placeholder="New step…"; nsInp.style.flex="1";
-          const naInp = el("input"); naInp.type="text"; naInp.id="na-"+want.id; naInp.placeholder="Assign to…"; naInp.style.width="100px";
-          const ndInp = el("input"); ndInp.type="text"; ndInp.id="nd-"+want.id; ndInp.placeholder="MM/DD/YY"; ndInp.style.width="120px";
-          const addBtn = el("button", { className:"btn", textContent:"Add" });
-          addBtn.addEventListener("click", function() { addStep(goal.id, want.id); });
-          nsInp.addEventListener("keydown", function(e) { if (e.key==="Enter") addStep(goal.id, want.id); });
+          const ar = el("div",{className:"add-step-row"});
+          const nsInp=el("input"); nsInp.type="text"; nsInp.id="ns-"+want.id; nsInp.placeholder="New step…"; nsInp.style.flex="1";
+          const naInp=el("input"); naInp.type="text"; naInp.id="na-"+want.id; naInp.placeholder="Assign to…"; naInp.style.width="100px";
+          const ndInp=el("input"); ndInp.type="text"; ndInp.id="nd-"+want.id; ndInp.placeholder="MM/DD/YY"; ndInp.style.width="110px";
+          const addBtn=el("button",{className:"btn",textContent:"Add"});
+          addBtn.addEventListener("click",function(){ addStep(goal.id,want.id); });
+          nsInp.addEventListener("keydown",function(e){ if(e.key==="Enter") addStep(goal.id,want.id); });
           ar.appendChild(nsInp); ar.appendChild(naInp); ar.appendChild(ndInp); ar.appendChild(addBtn);
           wb.appendChild(ar);
           sec.appendChild(wb);
@@ -740,151 +690,148 @@ function render() {
         body.appendChild(sec);
       });
 
-      // Add want row
-      const aw = el("div", { className:"add-want-row" });
-      const nwInp = el("input"); nwInp.type="text"; nwInp.id="nw-"+goal.id; nwInp.placeholder="Add a want or sub-goal…"; nwInp.style.flex="1";
-      const awBtn = el("button", { className:"btn", textContent:"Add" });
-      awBtn.addEventListener("click", function() { addWant(goal.id); });
-      nwInp.addEventListener("keydown", function(e) { if (e.key==="Enter") addWant(goal.id); });
+      const aw=el("div",{className:"add-want-row"});
+      const nwInp=el("input"); nwInp.type="text"; nwInp.id="nw-"+goal.id; nwInp.placeholder="Add a want or sub-goal…"; nwInp.style.flex="1";
+      const awBtn=el("button",{className:"btn",textContent:"Add"});
+      awBtn.addEventListener("click",function(){ addWant(goal.id); });
+      nwInp.addEventListener("keydown",function(e){ if(e.key==="Enter") addWant(goal.id); });
       aw.appendChild(nwInp); aw.appendChild(awBtn);
       body.appendChild(aw);
       card.appendChild(body);
     }
-
     list.appendChild(card);
   });
 }
 
-// ---- View state ----
-let currentView = "goals"; // "goals" | "deadlines"
-
-function setView(v) {
-  currentView = v;
-  document.getElementById("tab-goals").className     = "vtab" + (v === "goals"     ? " active" : "");
-  document.getElementById("tab-deadlines").className = "vtab" + (v === "deadlines" ? " active" : "");
-  document.getElementById("add-goal-section").style.display = v === "goals" ? "" : "none";
-  render();
-}
-
-// ---- Deadline view ----
-function renderDeadlines() {
-  const list = document.getElementById("deadline-list");
-  const goalsList = document.getElementById("goals-list");
-  goalsList.style.display = "none";
-  list.style.display = "";
-  list.innerHTML = "";
-
-  // Collect all steps with context
-  const now = new Date(); now.setHours(0,0,0,0);
-  const oneWeek  = new Date(now); oneWeek.setDate(now.getDate() + 7);
-  const oneMonth = new Date(now); oneMonth.setMonth(now.getMonth() + 1);
-
-  const groups = {
-    overdue:  { label:"Overdue",      cls:"overdue", items:[] },
-    week:     { label:"This Week",    cls:"soon",    items:[] },
-    month:    { label:"This Month",   cls:"",        items:[] },
-    later:    { label:"Later",        cls:"",        items:[] },
-    none:     { label:"No Deadline",  cls:"",        items:[] },
-  };
-
-  state.forEach(function(goal) {
-    goal.wants.forEach(function(want) {
-      want.steps.forEach(function(s) {
-        const entry = { s, goal, want };
-        if (!s.date) {
-          groups.none.items.push(entry);
-        } else {
-          const dt = new Date(s.date + "T00:00:00");
-          if (dt < now)        groups.overdue.items.push(entry);
-          else if (dt <= oneWeek)  groups.week.items.push(entry);
-          else if (dt <= oneMonth) groups.month.items.push(entry);
-          else                     groups.later.items.push(entry);
-        }
-      });
-    });
-  });
-
-  // Sort each group by date asc (none group: by goal/want order)
-  ["overdue","week","month","later"].forEach(function(k) {
-    groups[k].items.sort(function(a,b) {
-      return new Date(a.s.date+"T00:00:00") - new Date(b.s.date+"T00:00:00");
-    });
-  });
+// ---- Shared secondary view builder ----
+function buildSecondaryView(groups) {
+  const list = document.getElementById("goals-list");
+  const secList = document.getElementById("secondary-list");
+  list.style.display = "none"; secList.style.display = ""; secList.innerHTML = "";
 
   let anyItems = false;
-  Object.keys(groups).forEach(function(k) {
-    const g = groups[k];
+  groups.forEach(function(g) {
     if (!g.items.length) return;
     anyItems = true;
-
-    const grpEl = el("div", { className:"dl-group" });
-    const hdr = el("div", { className:"dl-group-header " + g.cls, textContent:g.label + " (" + g.items.length + ")" });
+    const grpEl = el("div",{className:"sv-group"});
+    const hdr = el("div",{className:"sv-group-header "+g.cls, textContent:g.label+" ("+g.items.length+")"});
     grpEl.appendChild(hdr);
 
     g.items.forEach(function(entry) {
-      const { s, goal, want } = entry;
+      const {s, goal, want} = entry;
       const ds = dateStatus(s.date);
-      const row = el("div", { className:"dl-row" });
+      const row = el("div",{className:"sv-row"});
 
-      const cb = el("input"); cb.type = "checkbox"; cb.checked = s.done;
-      cb.addEventListener("change", function(e) {
-        toggleStep(goal.id, want.id, s.id, e.target.checked);
-        renderDeadlines();
-      });
+      const cb=el("input"); cb.type="checkbox"; cb.checked=s.done;
+      cb.addEventListener("change",function(e){ toggleStep(goal.id,want.id,s.id,e.target.checked); renderSecondary(); });
 
-      const stxt = el("span", { className:"dl-text" + (s.done ? " done" : ""), textContent:s.text });
-      stxt.addEventListener("click", function(e) {
-        e.stopPropagation();
-        inlineEdit(stxt, s.text, function(val) { s.text = val; save(); renderDeadlines(); });
-      });
+      const stxt=el("span",{className:"sv-text"+(s.done?" done":""),textContent:s.text});
+      stxt.addEventListener("click",function(e){ e.stopPropagation(); inlineEdit(stxt,s.text,function(val){s.text=val;save();renderSecondary();}); });
 
-      const crumb = el("span", { className:"dl-crumb", textContent: goal.title + " › " + want.label, title: goal.title + " › " + want.label });
+      const crumb=el("span",{className:"sv-crumb",textContent:goal.title+" › "+want.label,title:goal.title+" › "+want.label});
 
-      if (s.assignee) {
-        const ab = el("span", { className:"dl-assignee", textContent:"👤 " + s.assignee });
-        row.appendChild(cb); row.appendChild(stxt); row.appendChild(crumb); row.appendChild(ab);
-      } else {
-        row.appendChild(cb); row.appendChild(stxt); row.appendChild(crumb);
+      row.appendChild(cb); row.appendChild(stxt); row.appendChild(crumb);
+
+      if (s.assignee) row.appendChild(el("span",{className:"sv-assignee",textContent:"👤 "+s.assignee}));
+
+      if (s.priority) {
+        const pi=priInfo(s.priority);
+        row.appendChild(el("span",{className:"pri-badge "+pi.cls,textContent:pi.label}));
       }
 
       if (s.date) {
-        const db = el("span", { className:"dl-date " + ds, textContent:(ds==="overdue"?"⚠ ":"") + fmtDate(s.date), title:"Click to change deadline" });
-        db.addEventListener("click", function(e) {
+        const db=el("span",{className:"sv-date "+ds,textContent:(ds==="overdue"?"⚠ ":"")+fmtDate(s.date),title:"Click to change"});
+        db.addEventListener("click",function(e){
           e.stopPropagation();
-          inlineBadgeEdit(db, s.date ? fmtDate(s.date) : "", "MM/DD/YY", function(val) {
-            if (!val) { s.date = ""; save(); renderDeadlines(); return; }
-            const p = parseTypedDate(val);
-            if (p === null) { toast("Use MM/DD/YY or MM/DD/YYYY"); renderDeadlines(); return; }
-            s.date = p; save(); renderDeadlines();
+          inlineBadgeEdit(db,s.date?fmtDate(s.date):"","MM/DD/YY",function(val){
+            if(!val){s.date="";save();renderSecondary();return;}
+            const p=parseTypedDate(val);
+            if(p===null){toast("Use MM/DD/YY or MM/DD/YYYY");renderSecondary();return;}
+            s.date=p;save();renderSecondary();
           });
         });
         row.appendChild(db);
       }
-
       grpEl.appendChild(row);
     });
-    list.appendChild(grpEl);
+    secList.appendChild(grpEl);
   });
 
-  if (!anyItems) {
-    list.appendChild(el("div", { className:"empty", textContent:"No steps yet — add some in the Goals view." }));
-  }
+  if (!anyItems) secList.appendChild(el("div",{className:"empty",textContent:"No steps yet — add some in the Goals view."}));
 }
 
-// ---- Wire up top-level buttons ----
+function renderDeadlines() {
+  const now=new Date(); now.setHours(0,0,0,0);
+  const oneWeek=new Date(now); oneWeek.setDate(now.getDate()+7);
+  const oneMonth=new Date(now); oneMonth.setMonth(now.getMonth()+1);
+  const groups=[
+    {label:"Overdue",     cls:"overdue", items:[]},
+    {label:"This Week",   cls:"soon",    items:[]},
+    {label:"This Month",  cls:"",        items:[]},
+    {label:"Later",       cls:"",        items:[]},
+    {label:"No Deadline", cls:"",        items:[]},
+  ];
+  state.forEach(function(goal){ goal.wants.forEach(function(want){ want.steps.forEach(function(s){
+    const entry={s,goal,want};
+    if(!s.date) groups[4].items.push(entry);
+    else {
+      const dt=new Date(s.date+"T00:00:00");
+      if(dt<now) groups[0].items.push(entry);
+      else if(dt<=oneWeek) groups[1].items.push(entry);
+      else if(dt<=oneMonth) groups[2].items.push(entry);
+      else groups[3].items.push(entry);
+    }
+  }); }); });
+  [0,1,2,3].forEach(function(i){ groups[i].items.sort(function(a,b){ return new Date(a.s.date+"T00:00:00")-new Date(b.s.date+"T00:00:00"); }); });
+  buildSecondaryView(groups);
+}
+
+function renderPriority() {
+  const groups=[
+    {label:"🔴 High",   cls:"p1", pri:1, items:[]},
+    {label:"🟡 Medium", cls:"p2", pri:2, items:[]},
+    {label:"🟢 Low",    cls:"p3", pri:3, items:[]},
+    {label:"⚪ No Priority", cls:"", pri:0, items:[]},
+  ];
+  state.forEach(function(goal){ goal.wants.forEach(function(want){ want.steps.forEach(function(s){
+    const entry={s,goal,want};
+    const g=groups.find(x=>x.pri===s.priority)||groups[3];
+    g.items.push(entry);
+  }); }); });
+  // Within each priority group, sort by date then undated
+  groups.forEach(function(g){
+    g.items.sort(function(a,b){
+      if(!a.s.date && !b.s.date) return 0;
+      if(!a.s.date) return 1;
+      if(!b.s.date) return -1;
+      return new Date(a.s.date+"T00:00:00")-new Date(b.s.date+"T00:00:00");
+    });
+  });
+  buildSecondaryView(groups);
+}
+
+function renderSecondary() {
+  if (currentView==="deadlines") renderDeadlines();
+  else if (currentView==="priority") renderPriority();
+}
+
+// ---- Main render ----
+function render() {
+  if (currentView==="goals") renderGoals();
+  else if (currentView==="deadlines") renderDeadlines();
+  else if (currentView==="priority") renderPriority();
+}
+
+// ---- Wire up ----
 document.getElementById("btn-add-goal").addEventListener("click", addGoal);
-document.getElementById("ng-input").addEventListener("keydown", function(e) { if (e.key==="Enter") addGoal(); });
+document.getElementById("ng-input").addEventListener("keydown",function(e){ if(e.key==="Enter") addGoal(); });
 document.getElementById("btn-export").addEventListener("click", exportData);
 document.getElementById("btn-copy").addEventListener("click", copyText);
-document.getElementById("btn-import").addEventListener("click", function() {
-  document.getElementById("import-file").click();
-});
-document.getElementById("import-file").addEventListener("change", function() {
-  importData(this.files[0]);
-  this.value = "";
-});
-document.getElementById("tab-goals").addEventListener("click", function() { setView("goals"); });
-document.getElementById("tab-deadlines").addEventListener("click", function() { setView("deadlines"); });
+document.getElementById("btn-import").addEventListener("click",function(){ document.getElementById("import-file").click(); });
+document.getElementById("import-file").addEventListener("change",function(){ importData(this.files[0]); this.value=""; });
+document.getElementById("tab-goals").addEventListener("click",function(){ setView("goals"); });
+document.getElementById("tab-deadlines").addEventListener("click",function(){ setView("deadlines"); });
+document.getElementById("tab-priority").addEventListener("click",function(){ setView("priority"); });
 
 render();
 </script>
