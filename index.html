@@ -111,6 +111,13 @@ h1{font-family:'DM Serif Display',serif;font-size:1.8rem;font-weight:400;letter-
 .want-label{flex:1;font-size:.88rem;font-weight:500;min-width:0;cursor:text}
 .want-pct{font-size:.72rem;color:var(--text3);flex-shrink:0}
 
+/* Move-want menu */
+.move-want-menu{position:fixed;z-index:200;background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--rs);box-shadow:0 4px 20px rgba(0,0,0,.15);padding:.4rem;display:flex;flex-direction:column;gap:3px;min-width:160px;max-width:260px}
+.move-want-item{font-size:.82rem;padding:.45rem .75rem;border-radius:4px;cursor:pointer;border:none;background:none;font-family:inherit;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.move-want-item:hover{background:var(--accent-light);color:var(--accent)}
+.move-want-item:disabled{color:var(--text3);cursor:default;font-style:italic}
+.move-want-item:disabled:hover{background:none;color:var(--text3)}
+
 /* Step rows — two-line layout */
 .step-row{padding:.5rem 1rem;border-bottom:1px solid var(--border);background:var(--surface)}
 .step-row:last-child{border-bottom:none}
@@ -382,6 +389,45 @@ function toggleWant(gid,wid){getW(gid,wid).open^=1;save();render();}
 function toggleStep(gid,wid,sid,v){getS(gid,wid,sid).done=v;save();render();}
 function deleteGoal(gid){if(!confirm("Delete this goal and everything under it?"))return;state=state.filter(g=>g.id!==gid);save();render();toast("Goal deleted.");}
 function deleteWant(gid,wid){if(!confirm("Delete this want and its steps?"))return;getG(gid).wants=getG(gid).wants.filter(w=>w.id!==wid);save();render();toast("Want deleted.");}
+
+let openMoveMenu=null;
+function closeMoveMenu(){if(openMoveMenu){openMoveMenu.remove();openMoveMenu=null;}}
+document.addEventListener("click",closeMoveMenu);
+
+function showMoveWantMenu(anchor, gid, wid) {
+  closeMoveMenu(); closePriMenu();
+  const otherGoals = state.filter(g => g.id !== gid);
+  const menu = document.createElement("div");
+  menu.className = "move-want-menu";
+  const lbl = el("div",{className:"move-want-item",textContent:"Move to…"});
+  lbl.style.cssText="font-weight:600;cursor:default;color:var(--text3);padding-bottom:.2rem;border-bottom:1px solid var(--border);margin-bottom:.2rem";
+  menu.appendChild(lbl);
+  if(!otherGoals.length){
+    const none=el("button",{className:"move-want-item",textContent:"No other goals yet",disabled:true});
+    menu.appendChild(none);
+  } else {
+    otherGoals.forEach(function(g){
+      const item=el("button",{className:"move-want-item",textContent:g.title});
+      item.addEventListener("click",function(e){
+        e.stopPropagation(); closeMoveMenu();
+        const want = getW(gid,wid);
+        // Remove from current goal
+        getG(gid).wants = getG(gid).wants.filter(w=>w.id!==wid);
+        // Add to target goal
+        g.wants.push(want);
+        save(); render();
+        toast("Moved to \""+g.title+"\"!");
+      });
+      menu.appendChild(item);
+    });
+  }
+  document.body.appendChild(menu);
+  const rect=anchor.getBoundingClientRect();
+  const top=rect.bottom+4;
+  const left=Math.min(rect.left, window.innerWidth-270);
+  menu.style.cssText="position:fixed;top:"+top+"px;left:"+left+"px";
+  openMoveMenu=menu;
+}
 function deleteStep(gid,wid,sid){getW(gid,wid).steps=getW(gid,wid).steps.filter(s=>s.id!==sid);save();render();toast("Step deleted.");}
 function moveItem(arr,id,dir){const i=arr.findIndex(x=>x.id===id);if(i===-1)return;const j=i+dir;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];}
 
@@ -826,6 +872,8 @@ function renderGoals(){
         wh.appendChild(el("span",{className:"want-icon",textContent:"★"}));
         wh.appendChild(wlabel);wh.appendChild(wpct);
         wh.appendChild(iconBtn("✏️","Rename",false,function(){inlineEdit(wlabel,want.label,function(val){want.label=val;save();render();});}));
+        const moveWantBtn=iconBtn("↗","Move to another goal",false,function(){ showMoveWantMenu(moveWantBtn,goal.id,want.id); });
+        wh.appendChild(moveWantBtn);
         wh.appendChild(iconBtn("🗑","Delete",true,function(){deleteWant(goal.id,want.id);}));
         wh.appendChild(chev2);
         wh.addEventListener("click",function(){toggleWant(goal.id,want.id);});
